@@ -689,8 +689,8 @@
         }
 
         // If target is not the <li> element (ie: a child), find the <li>.
-        if(!$target.is('li')) {
-            $target = $target.closest('li');
+        if(!$target.is('li.slick-dot')) {
+            $target = $target.closest('li.slick-dot');
         }
 
         unevenOffset = (_.slideCount % _.options.slidesToScroll !== 0);
@@ -754,7 +754,7 @@
 
         if (_.options.dots && _.$dots !== null) {
 
-            $('li', _.$dots)
+            $('li.slick-dot', _.$dots)
                 .off('click.slick', _.changeSlide)
                 .off('mouseenter.slick', $.proxy(_.interrupt, _, true))
                 .off('mouseleave.slick', $.proxy(_.interrupt, _, false));
@@ -1299,7 +1299,7 @@
         });
 
         if (_.$dots !== null) {
-            _.$dots.attr('role', 'tablist').find('li').each(function(i) {
+            _.$dots.attr('role', 'tablist').find('li.slick-dot').each(function(i) {
                 $(this).attr({
                     'role': 'presentation',
                     'aria-selected': 'false',
@@ -1339,14 +1339,14 @@
         var _ = this;
 
         if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {
-            $('li', _.$dots).on('click.slick', {
+            $('li.slick-dot', _.$dots).on('click.slick', {
                 message: 'index'
             }, _.changeSlide);
         }
 
         if ( _.options.dots === true && _.options.pauseOnDotsHover === true ) {
 
-            $('li', _.$dots)
+            $('li.slick-dot', _.$dots)
                 .on('mouseenter.slick', $.proxy(_.interrupt, _, true))
                 .on('mouseleave.slick', $.proxy(_.interrupt, _, false));
 
@@ -2844,12 +2844,12 @@
         if (_.$dots !== null) {
 
             _.$dots
-                .find('li')
+                .find('li.slick-dot')
                 .removeClass('slick-active')
                 .attr('aria-hidden', 'true');
 
             _.$dots
-                .find('li')
+                .find('li.slick-dot')
                 .eq(Math.floor(_.currentSlide / _.options.slidesToScroll))
                 .addClass('slick-active')
                 .attr('aria-hidden', 'false');
